@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 10756, guid: 0000000000000000e000000000000000, type: 0}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -251,8 +251,8 @@ Camera:
   m_GameObject: {fileID: 1068032622}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 4
-  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 1}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -302,7 +302,7 @@ Transform:
   m_GameObject: {fileID: 1068032622}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -1000}
+  m_LocalPosition: {x: 0, y: 1, z: -10000}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -344,13 +344,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   celestialBodyTemplates:
   - {fileID: 1429461978}
+  - {fileID: 1429461978}
   startingPositions:
   - {x: 0, y: 0, z: 0}
+  - {x: 400, y: 0, z: 0}
   startingSize:
-  - {x: 100, y: 100, z: 100}
-  startingMasses: 64000000
+  - {x: 1000, y: 1000, z: 1000}
+  - {x: 50, y: 50, z: 50}
+  startingMasses: 40420f0001000000
   velocities:
   - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 81.67, z: 0}
+  GravitationalConstant: 6.67
 --- !u!4 &1565470354
 Transform:
   m_ObjectHideFlags: 0

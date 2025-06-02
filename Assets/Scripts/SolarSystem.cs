@@ -16,7 +16,7 @@ public class SolarSystem : MonoBehaviour
     public List<Vector3> velocities = new List<Vector3>();
 
     // Gravity
-    public const float GravitationalConstant = 6.67e-11f;
+    public float GravitationalConstant = 6.67e-11f;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -48,19 +48,19 @@ public class SolarSystem : MonoBehaviour
                     // Finds the magnitude of the gravitational force
                     Vector3 r = secondaryCelestialBody.transform.position - targetCelestialBody.transform.position;
                     float distanceSquared = (float)(Math.Pow(r.x, 2.0f) + Math.Pow(r.y, 2.0f) + Math.Pow(r.z, 2.0f));
-    
+
                     float m1 = targetCelestialBody.GetComponent<Rigidbody>().mass;
                     float m2 = secondaryCelestialBody.GetComponent<Rigidbody>().mass;
-    
+
                     float forceMagnitude = GravitationalConstant * (m1 * m2) / distanceSquared;
-    
+
                     // Uses the unit vector of the distance to calculate the force vector
                     float distance = (float)(Math.Sqrt(distanceSquared));
                     Vector3 force = r * forceMagnitude / distance;
-    
+
                     // Changes the first celestial body's velocity accordingly F=ma => F/m = a
                     velocities[i] += force / m1;
-    
+
                     // Output a ton of debug stuff
                     Debug.Log($"Force mag. : {forceMagnitude}");
                     Debug.Log($"Centres distance: {distance}");
