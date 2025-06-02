@@ -10,7 +10,7 @@ public class SolarSystem : MonoBehaviour
     public GameObject[] celestialBodyTemplates;
     public Vector3[] startingPositions;
     public Vector3[] startingSize;
-    public int[] startingMasses;
+    public float[] startingMasses;
 
     private List<GameObject> celestialBodies = new List<GameObject>();
     public List<Vector3> velocities = new List<Vector3>();

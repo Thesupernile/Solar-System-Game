@@ -149,7 +149,7 @@ Transform:
   m_GameObject: {fileID: 74553311}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -1000}
+  m_LocalPosition: {x: 0, y: 1, z: -7200}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -252,8 +252,8 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
+  m_UseGravity: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -270,6 +270,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 100
+  rotationSpeed: 120
 --- !u!1 &608570926
 GameObject:
   m_ObjectHideFlags: 0
@@ -425,7 +426,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.3
-  far clip plane: 1000
+  far clip plane: 1000000
   field of view: 90
   orthographic: 0
   orthographic size: 5
@@ -498,15 +499,17 @@ MonoBehaviour:
   - {fileID: 1429461978}
   startingPositions:
   - {x: 0, y: 0, z: 0}
-  - {x: 400, y: 0, z: 0}
+  - {x: 8510, y: 0, z: 0}
   startingSize:
-  - {x: 500, y: 500, z: 500}
-  - {x: 100, y: 100, z: 100}
-  startingMasses: a086010064000000
+  - {x: 7000, y: 7000, z: 7000}
+  - {x: 637, y: 637, z: 637}
+  startingMasses:
+  - 2e+25
+  - 6e+19
   velocities:
   - {x: 0, y: 0, z: 0}
   - {x: 0, y: 15, z: 0}
-  GravitationalConstant: 6.67
+  GravitationalConstant: 0.0667
 --- !u!4 &1565470354
 Transform:
   m_ObjectHideFlags: 0
@@ -569,6 +572,18 @@ PrefabInstance:
     - target: {fileID: 3242712393831501857, guid: 9a232d8ca43075d4f87bff208105b093, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4506695131265487993, guid: 9a232d8ca43075d4f87bff208105b093, type: 3}
+      propertyPath: m_Drag
+      value: 10000
+      objectReference: {fileID: 0}
+    - target: {fileID: 4506695131265487993, guid: 9a232d8ca43075d4f87bff208105b093, type: 3}
+      propertyPath: m_AngularDrag
+      value: 10000
+      objectReference: {fileID: 0}
+    - target: {fileID: 4506695131265487993, guid: 9a232d8ca43075d4f87bff208105b093, type: 3}
+      propertyPath: m_IsKinematic
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5997831361240536963, guid: 9a232d8ca43075d4f87bff208105b093, type: 3}
       propertyPath: m_Name
