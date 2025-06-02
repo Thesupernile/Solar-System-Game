@@ -342,7 +342,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2a064cefcae9794baa2ba9e1b5c82fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  celestialBodyTemplate: {fileID: 1429461978}
+  celestialBodies:
+  - {fileID: 1429461978}
+  startingVelocities:
+  - {x: 0, y: 0, z: 0}
+  startingPositions:
+  - {x: 0, y: 0, z: 0}
+  startingSize:
+  - {x: 100, y: 100, z: 100}
+  startingMasses: 64000000
 --- !u!4 &1565470354
 Transform:
   m_ObjectHideFlags: 0

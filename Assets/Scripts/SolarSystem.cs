@@ -3,12 +3,19 @@ using System;
 
 public class SolarSystem : MonoBehaviour
 {
-    // Temp Variable for testing
-    public GameObject celestialBodyTemplate;
     // Main Variables
-    public SolarSystemResources.CelestialBody[] celestialBodies;
-    public const float GravitationalConstant = (6.67 * Math.Pow(10, -11));
-    GameObject sun;
+
+    // Celestial Bodies
+    public GameObject[] celestialBodyTemplates;
+    public Vector3[] startingVelocities;
+    public Vector3[] startingPositions;
+    public Vector3[] startingSize;
+    public int[] startingMasses;
+
+    private GameObject[] celestialBodies;
+
+    // Gravity
+    public const float GravitationalConstant = 6.67e-11f;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -16,10 +23,11 @@ public class SolarSystem : MonoBehaviour
         // Create all the celestial bodies that we need to (each body needs a radius, a position, a mass and a velocity)
         // Values below are temporary and subject to change later :)
         // Creation of the sun
-        sun = Instantiate(celestialBodyTemplate);
-        sun.SetActive(true);
-        sun.transform.localScale = new Vector3(100, 100, 100);
-        sun.transform.position = new Vector3(0, 0, 0);
+        for (int i = 0; i < celestialBodies.Length; i++)
+        {
+            GameObject body = Instantiate(celestialBodyTemplates[i]);
+            body.transform.position = startingPositions[i];
+        }
         
     }
 
@@ -27,12 +35,25 @@ public class SolarSystem : MonoBehaviour
     void Update()
     {
         // Using the universal law of gravitation, attract each of the celestial bodies to each of the other bodies
-        foreach (SolarSystemResources.CelestialBody targetCelestialBody in celestialBodies) {
-            foreach (SolarSystemResources.CelestialBody secondaryCelestialBody in celestialBodies) {
-                
+        foreach (GameObject targetCelestialBody in celestialBodies) {
+            foreach (GameObject secondaryCelestialBody in celestialBodies)
+            {
+                // Finds the magnitude of the gravitational force
+                Vector3 r = secondaryCelestialBody.transform.position - targetCelestialBody.transform.position;
+                float distanceSquared = (float)(Math.Pow(r.x, 2.0f) + Math.Pow(r.y, 2.0f) + Math.Pow(r.z, 2.0f));
+
+                float m1 = targetCelestialBody.GetComponent<Rigidbody>().mass;
+                float m2 = secondaryCelestialBody.GetComponent<Rigidbody>().mass;
+
+                float forceMagnitude = GravitationalConstant * (m1 * m2) / distanceSquared;
+
+                // Uses the unit vector of the distance to calculate the force vector
+                float distance = (float)(Math.Sqrt(distanceSquared));
+                Vector3 force = new Vector3((r.x * forceMagnitude / distance), (r.y * forceMagnitude / distance), (r.z * forceMagnitude / distance));
+
+                // Moves the first celestial body accordingly
+                targetCelestialBody.transform.position += force;
             }
         }
-        float mass = sun.GetComponent<Rigidbody>().mass;
-
     }
 }
