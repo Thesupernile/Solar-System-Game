@@ -26,7 +26,7 @@ public class SolarSystem : MonoBehaviour
         // Creation of the sun
         for (int i = 0; i < celestialBodyTemplates.Length; i++)
         {
-            GameObject body = Instantiate(celestialBodyTemplates[i]);
+            GameObject body = Instantiate(celestialBodyTemplates[i], this.transform);
             body.SetActive(true);
             body.transform.position = startingPositions[i];
             body.transform.localScale = startingSize[i];
@@ -62,10 +62,10 @@ public class SolarSystem : MonoBehaviour
                     velocities[i] += force / m1;
 
                     // Output a ton of debug stuff
-                    Debug.Log($"Force mag. : {forceMagnitude}");
+                    /*Debug.Log($"Force mag. : {forceMagnitude}");
                     Debug.Log($"Centres distance: {distance}");
                     Debug.Log($"Mass 1: {m1} Mass 2: {m2}");
-                    Debug.Log($"{force.x}, {force.y}, {force.z} \n");
+                    Debug.Log($"{force.x}, {force.y}, {force.z} \n");*/
                 }
             }
             // Move the target body by it's curret velocity
