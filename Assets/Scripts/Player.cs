@@ -3,8 +3,9 @@ using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
 {
-    public float moveSpeed = 100f;
+    public float moveSpeed = 1f;
     public float rotationSpeed = 2f;
+    public float resetSpeedPercent = 1f;
 
 
     private Vector3 velocity;
@@ -22,8 +23,14 @@ public class Player : MonoBehaviour
         velocity = new Vector3(0, 0, 0);
     }
 
-    // Update is called once per frame
     void Update()
+    {
+        if (InputSystem.actions.FindAction("ResetVelocity").IsPressed()) {
+            //rb.AddForce(-rb.linearVelocity * resetSpeedPercent / 100);
+        }
+    }
+
+    void FixedUpdate()
     {
         // Move the player in accordance to their inputs
         Vector3 moveValue = moveAction.ReadValue<Vector3>() * moveSpeed * Time.fixedDeltaTime;
@@ -35,8 +42,7 @@ public class Player : MonoBehaviour
         Quaternion turnRotation = Quaternion.Euler(turnVert, turnHoriz, 0f);
 
 
-        // Move and rotate the player
-        rb.transform.position += velocity;
+        rb.MovePosition(rb.position + velocity);
         rb.MoveRotation(rb.rotation * turnRotation);
     }
 }
