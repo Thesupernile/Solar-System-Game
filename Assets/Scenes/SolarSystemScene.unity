@@ -145,9 +145,9 @@ Light:
   m_GameObject: {fileID: 608570926}
   m_Enabled: 1
   serializedVersion: 11
-  m_Type: 1
+  m_Type: 2
   m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
-  m_Intensity: 100
+  m_Intensity: 1000
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -181,7 +181,7 @@ Light:
   m_Cookie: {fileID: 0}
   m_DrawHalo: 0
   m_Flare: {fileID: 0}
-  m_RenderMode: 0
+  m_RenderMode: 1
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -302,7 +302,7 @@ Transform:
   m_GameObject: {fileID: 1068032622}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -110}
+  m_LocalPosition: {x: 0, y: 1, z: -1000}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -342,15 +342,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2a064cefcae9794baa2ba9e1b5c82fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  celestialBodies:
+  celestialBodyTemplates:
   - {fileID: 1429461978}
-  startingVelocities:
-  - {x: 0, y: 0, z: 0}
   startingPositions:
   - {x: 0, y: 0, z: 0}
   startingSize:
   - {x: 100, y: 100, z: 100}
   startingMasses: 64000000
+  velocities:
+  - {x: 0, y: 0, z: 0}
 --- !u!4 &1565470354
 Transform:
   m_ObjectHideFlags: 0
