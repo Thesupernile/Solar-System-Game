@@ -30,13 +30,14 @@ public class SolarSystem : MonoBehaviour
             body.SetActive(true);
             body.transform.position = startingPositions[i];
             body.transform.localScale = startingSize[i];
+            body.GetComponent<Rigidbody>().mass = startingMasses[i];
             celestialBodies.Add(body);
         }
         
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         for (int i = 0; i < celestialBodies.Count; i++)
         {
@@ -44,7 +45,8 @@ public class SolarSystem : MonoBehaviour
             // Using the universal law of gravitation, attract each of the celestial bodies to each of the other bodies
             foreach (GameObject secondaryCelestialBody in celestialBodies)
             {
-                if (secondaryCelestialBody != targetCelestialBody) {
+                if (secondaryCelestialBody != targetCelestialBody)
+                {
                     // Finds the magnitude of the gravitational force
                     Vector3 r = secondaryCelestialBody.transform.position - targetCelestialBody.transform.position;
                     float distanceSquared = (float)(Math.Pow(r.x, 2.0f) + Math.Pow(r.y, 2.0f) + Math.Pow(r.z, 2.0f));
@@ -59,17 +61,27 @@ public class SolarSystem : MonoBehaviour
                     Vector3 force = r * forceMagnitude / distance;
 
                     // Changes the first celestial body's velocity accordingly F=ma => F/m = a
-                    velocities[i] += force / m1;
+                    velocities[i] += (force / m1) * Time.fixedDeltaTime;
 
                     // Output a ton of debug stuff
-                    /*Debug.Log($"Force mag. : {forceMagnitude}");
+                    Debug.Log($"Force mag. : {forceMagnitude}");
                     Debug.Log($"Centres distance: {distance}");
                     Debug.Log($"Mass 1: {m1} Mass 2: {m2}");
-                    Debug.Log($"{force.x}, {force.y}, {force.z} \n");*/
+                    Debug.Log($"Force: {force.x}, {force.y}, {force.z} \n");
+                    Debug.Log($"Velocity: {velocities[i].x}, {velocities[i].y}, {velocities[i].z}");
                 }
             }
             // Move the target body by it's curret velocity
-            targetCelestialBody.transform.position += velocities[i];
+            targetCelestialBody.transform.position += velocities[i] * Time.fixedDeltaTime;
         }
     }
 }
+
+
+// Solar system concept
+/*
+    One sun in the centre, with a mass of: 2e12 and a radius of 1km
+    A planet that is 2km from the centre and has a mass of: 6e6, radius of 250m and a starting velocity of 36.5m/s
+
+    Issues: the planets don't seem to like staying in a stable orbit. I've tried using the equation ... (I need to use delta time don't I???)
+*/
