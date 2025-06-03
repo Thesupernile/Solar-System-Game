@@ -30,6 +30,7 @@ public class SolarSystem : MonoBehaviour
             body.SetActive(true);
             body.transform.position = startingPositions[i];
             body.transform.localScale = startingSize[i];
+            body.GetComponent<SphereCollider>().radius = (startingSize[i].x / 2);
             body.GetComponent<Rigidbody>().mass = startingMasses[i];
             celestialBodies.Add(body);
         }

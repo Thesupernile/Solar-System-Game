@@ -25,15 +25,16 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        if (InputSystem.actions.FindAction("ResetVelocity").IsPressed()) {
-            //rb.AddForce(-rb.linearVelocity * resetSpeedPercent / 100);
+        if (InputSystem.actions.FindAction("ResetVelocity").IsPressed())
+        {
+            rb.AddForce(-rb.linearVelocity * (resetSpeedPercent / 100));
         }
     }
 
     void FixedUpdate()
     {
         // Move the player in accordance to their inputs
-        Vector3 moveValue = moveAction.ReadValue<Vector3>() * moveSpeed * Time.fixedDeltaTime;
+        Vector3 moveValue = rb.rotation * (moveAction.ReadValue<Vector3>() * moveSpeed * Time.fixedDeltaTime);
         velocity += moveValue;
 
         // Change the camera angle in accordance to player input
@@ -44,5 +45,12 @@ public class Player : MonoBehaviour
 
         rb.MovePosition(rb.position + velocity);
         rb.MoveRotation(rb.rotation * turnRotation);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        /*if (velocity >= 800 && other.) {
+            
+        }*/
     }
 }

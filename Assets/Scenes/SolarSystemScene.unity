@@ -239,8 +239,8 @@ Rigidbody:
   m_GameObject: {fileID: 74553311}
   serializedVersion: 4
   m_Mass: 1
-  m_Drag: 10
-  m_AngularDrag: 10
+  m_Drag: 1
+  m_AngularDrag: 1
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -256,7 +256,7 @@ Rigidbody:
   m_IsKinematic: 1
   m_Interpolate: 1
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!114 &74553317
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -536,7 +536,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1117008332832476105, guid: 9a232d8ca43075d4f87bff208105b093, type: 3}
       propertyPath: m_Radius
-      value: 3500
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1117008332832476105, guid: 9a232d8ca43075d4f87bff208105b093, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1117008332832476105, guid: 9a232d8ca43075d4f87bff208105b093, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1717572808025818589, guid: 9a232d8ca43075d4f87bff208105b093, type: 3}
       propertyPath: m_ReceiveShadows
@@ -584,7 +592,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4506695131265487993, guid: 9a232d8ca43075d4f87bff208105b093, type: 3}
       propertyPath: m_Drag
-      value: 10000
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4506695131265487993, guid: 9a232d8ca43075d4f87bff208105b093, type: 3}
       propertyPath: m_UseGravity
@@ -592,11 +600,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4506695131265487993, guid: 9a232d8ca43075d4f87bff208105b093, type: 3}
       propertyPath: m_AngularDrag
-      value: 10000
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4506695131265487993, guid: 9a232d8ca43075d4f87bff208105b093, type: 3}
+      propertyPath: m_Interpolate
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4506695131265487993, guid: 9a232d8ca43075d4f87bff208105b093, type: 3}
       propertyPath: m_IsKinematic
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4506695131265487993, guid: 9a232d8ca43075d4f87bff208105b093, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5997831361240536963, guid: 9a232d8ca43075d4f87bff208105b093, type: 3}
       propertyPath: m_Name
