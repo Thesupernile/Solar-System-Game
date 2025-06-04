@@ -7,6 +7,7 @@ public class Player : MonoBehaviour
     public float rotationSpeed = 2f;
     public float resetSpeedPercent = 1f;
     public float maxSpeed = 100f;
+    public bool isLanded = true;
     static public Vector3 closestBodyDistance;
 
 
@@ -36,7 +37,7 @@ public class Player : MonoBehaviour
             }
             else
             {
-                velocity = new Vector3(0,0,0);
+                velocity = new Vector3(0, 0, 0);
             }
         }
     }
@@ -75,8 +76,11 @@ public class Player : MonoBehaviour
     {
         if (velocity.sqrMagnitude <= 160000 && other.GetComponent<Rigidbody>() != null)
         {
-            velocity = other.GetComponent<Rigidbody>().linearVelocity;
-            Debug.Log($"Touchdown. Velocity set to: {velocity.x}, {velocity.y}, {velocity.z}");
+            isLanded = true;
         }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        isLanded = false;
     }
 }

@@ -30,7 +30,7 @@ public class SolarSystem : MonoBehaviour
             // Using the universal law of gravitation, attract each of the celestial bodies to each of the other bodies
             foreach (GameObject secondaryCelestialBody in celestialBodies)
             {
-                if (secondaryCelestialBody != targetCelestialBody)
+                if (secondaryCelestialBody != targetCelestialBody && !(targetCelestialBody.CompareTag("Player") && Player.isLanded))
                 {
                     // Finds the magnitude of the gravitational force
                     Vector3 r = secondaryCelestialBody.transform.position - targetCelestialBody.transform.position;
