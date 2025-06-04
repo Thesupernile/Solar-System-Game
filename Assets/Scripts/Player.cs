@@ -30,7 +30,14 @@ public class Player : MonoBehaviour
     {
         if (InputSystem.actions.FindAction("ResetVelocity").IsPressed())
         {
-            velocity -= velocity * (resetSpeedPercent / 100);
+            if (velocity.magnitude > 10)
+            {
+                velocity -= velocity * (resetSpeedPercent / 100);
+            }
+            else
+            {
+                velocity = new Vector3(0,0,0);
+            }
         }
     }
 
@@ -66,8 +73,10 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (velocity.sqrMagnitude <= 160000 && other.GetComponent<Rigidbody>() != null) {
-            velocity = other.GetComponent<Rigidbody>().linearVelocity;  
+        if (velocity.sqrMagnitude <= 160000 && other.GetComponent<Rigidbody>() != null)
+        {
+            velocity = other.GetComponent<Rigidbody>().linearVelocity;
+            Debug.Log($"Touchdown. Velocity set to: {velocity.x}, {velocity.y}, {velocity.z}");
         }
     }
 }

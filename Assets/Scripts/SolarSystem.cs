@@ -49,11 +49,11 @@ public class SolarSystem : MonoBehaviour
                     velocities[i] += (force / m1) * Time.fixedDeltaTime;
 
                     // Output a ton of debug stuff
-                    Debug.Log($"Force mag. : {forceMagnitude}");
+                    /*Debug.Log($"Force mag. : {forceMagnitude}");
                     Debug.Log($"Centres distance: {distance}");
                     Debug.Log($"Mass 1: {m1} Mass 2: {m2}");
                     Debug.Log($"Force: {force.x}, {force.y}, {force.z} \n");
-                    Debug.Log($"Velocity: {velocities[i].x}, {velocities[i].y}, {velocities[i].z}");
+                    Debug.Log($"Velocity: {velocities[i].x}, {velocities[i].y}, {velocities[i].z}");*/
 
                     // If the other body is the player, we compare the distance
                     if (secondaryCelestialBody.CompareTag("Player") && (closestBodyDistance != null || r.magnitude < closestBodyDistance.magnitude))
