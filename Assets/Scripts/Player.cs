@@ -35,7 +35,7 @@ public class Player : MonoBehaviour
     void FixedUpdate()
     {
         // Move the player in accordance to their inputs
-        Vector3 moveValue = rb.rotation * (moveAction.ReadValue<Vector3>() * moveSpeed * Time.fixedDeltaTime);
+        Vector3 moveValue = rb.rotation * moveAction.ReadValue<Vector3>() * moveSpeed * Time.fixedDeltaTime;
 
         // Change the camera angle in accordance to player input
         float turnHoriz = rotateAction.ReadValue<Vector2>().x * rotationSpeed * Time.fixedDeltaTime;
@@ -43,14 +43,15 @@ public class Player : MonoBehaviour
         Quaternion turnRotation = Quaternion.Euler(turnVert, turnHoriz, 0f);
 
 
-        rb.AddForce(moveValue);
+        velocity += moveValue * rb.mass;
+        rb.position += velocity;
         rb.MoveRotation(rb.rotation * turnRotation);
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        /*if (velocity >= 800 && other.) {
-            
-        }*/
+        if (velocity.sqrMagnitude <= 160000 && other.GetComponent<Rigidbody>() != null) {
+            velocity = other.GetComponent<Rigidbody>().linearVelocity;  
+        }
     }
 }
