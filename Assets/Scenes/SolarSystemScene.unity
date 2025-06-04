@@ -552,7 +552,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4506695131265487993, guid: 9a232d8ca43075d4f87bff208105b093, type: 3}
       propertyPath: m_Drag
-      value: 1
+      value: 100000
       objectReference: {fileID: 0}
     - target: {fileID: 4506695131265487993, guid: 9a232d8ca43075d4f87bff208105b093, type: 3}
       propertyPath: m_Mass
@@ -564,7 +564,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4506695131265487993, guid: 9a232d8ca43075d4f87bff208105b093, type: 3}
       propertyPath: m_AngularDrag
-      value: 1
+      value: 100000
       objectReference: {fileID: 0}
     - target: {fileID: 4506695131265487993, guid: 9a232d8ca43075d4f87bff208105b093, type: 3}
       propertyPath: m_Interpolate
@@ -758,7 +758,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4506695131265487993, guid: 9a232d8ca43075d4f87bff208105b093, type: 3}
       propertyPath: m_Drag
-      value: 1
+      value: 100000
       objectReference: {fileID: 0}
     - target: {fileID: 4506695131265487993, guid: 9a232d8ca43075d4f87bff208105b093, type: 3}
       propertyPath: m_Mass
@@ -770,7 +770,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4506695131265487993, guid: 9a232d8ca43075d4f87bff208105b093, type: 3}
       propertyPath: m_AngularDrag
-      value: 1
+      value: 100000
       objectReference: {fileID: 0}
     - target: {fileID: 4506695131265487993, guid: 9a232d8ca43075d4f87bff208105b093, type: 3}
       propertyPath: m_Interpolate

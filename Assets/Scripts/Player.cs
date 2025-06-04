@@ -7,7 +7,7 @@ public class Player : MonoBehaviour
     public float rotationSpeed = 2f;
     public float resetSpeedPercent = 1f;
     public float maxSpeed = 100f;
-    public bool isLanded = true;
+    static public bool isLanded = true;
     static public Vector3 closestBodyDistance;
 
 
@@ -55,7 +55,6 @@ public class Player : MonoBehaviour
 
         velocity += moveValue * rb.mass;
         rb.position += velocity;
-        rb.MoveRotation(rb.rotation * turnRotation);
 
         // If the player velocity exceeds maximum, set it to the maximum
         if (velocity.magnitude > maxSpeed)
@@ -69,6 +68,12 @@ public class Player : MonoBehaviour
         {
             // Rotate the camera
             transform.LookAt(transform, closestBodyDistance);
+            Debug.Log("Looking at new celestial body");
+            rb.MoveRotation(Quaternion.Euler(0, 0, 0));
+        }
+        else
+        {
+            rb.MoveRotation(rb.rotation * turnRotation);
         }
     }
 
