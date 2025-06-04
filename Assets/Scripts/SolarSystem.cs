@@ -7,12 +7,7 @@ public class SolarSystem : MonoBehaviour
     // Main Variables
 
     // Celestial Bodies
-    public GameObject[] celestialBodyTemplates;
-    public Vector3[] startingPositions;
-    public Vector3[] startingSize;
-    public float[] startingMasses;
-
-    private List<GameObject> celestialBodies = new List<GameObject>();
+    public List<GameObject> celestialBodies = new List<GameObject>();
     public List<Vector3> velocities = new List<Vector3>();
 
     // Gravity
@@ -21,20 +16,8 @@ public class SolarSystem : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        // Create all the celestial bodies that we need to (each body needs a radius, a position, a mass and a velocity)
-        // Values below are temporary and subject to change later :)
-        // Creation of the sun
-        for (int i = 0; i < celestialBodyTemplates.Length; i++)
-        {
-            GameObject body = Instantiate(celestialBodyTemplates[i], this.transform);
-            body.SetActive(true);
-            body.transform.position = startingPositions[i];
-            body.transform.localScale = startingSize[i];
-            body.GetComponent<SphereCollider>().radius = (startingSize[i].x / 2);
-            body.GetComponent<Rigidbody>().mass = startingMasses[i];
-            celestialBodies.Add(body);
-        }
-        
+        velocities.Add(new Vector3(0, 0, 0));
+        velocities.Add(new Vector3(0, 0, 50));
     }
 
     // Update is called once per frame
@@ -73,7 +56,7 @@ public class SolarSystem : MonoBehaviour
                 }
             }
             // Move the target body by it's curret velocity
-            targetCelestialBody.transform.position += velocities[i] * Time.fixedDeltaTime;
+            targetCelestialBody.GetComponent<Rigidbody>().MovePosition(targetCelestialBody.GetComponent<Rigidbody>().position + velocities[i] * Time.fixedDeltaTime);
         }
     }
 }
