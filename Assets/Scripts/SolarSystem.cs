@@ -34,7 +34,7 @@ public class SolarSystem : MonoBehaviour
                 {
                     // Finds the magnitude of the gravitational force
                     Vector3 r = secondaryCelestialBody.transform.position - targetCelestialBody.transform.position;
-                    float distanceSquared = (float)(Math.Pow(r.x, 2.0f) + Math.Pow(r.y, 2.0f) + Math.Pow(r.z, 2.0f));
+                    float distanceSquared = r.sqrMagnitude;
 
                     float m1 = targetCelestialBody.GetComponent<Rigidbody>().mass;
                     float m2 = secondaryCelestialBody.GetComponent<Rigidbody>().mass;
@@ -42,8 +42,7 @@ public class SolarSystem : MonoBehaviour
                     float forceMagnitude = GravitationalConstant * (m1 * m2) / distanceSquared;
 
                     // Uses the unit vector of the distance to calculate the force vector
-                    float distance = (float)(Math.Sqrt(distanceSquared));
-                    Vector3 force = r * forceMagnitude / distance;
+                    Vector3 force = r.normalized * forceMagnitude;
 
                     // Changes the first celestial body's velocity accordingly F=ma => F/m = a
                     velocities[i] += (force / m1) * Time.fixedDeltaTime;
