@@ -68,4 +68,5 @@ public class SolarSystem : MonoBehaviour
     A planet that is 2km from the centre and has a mass of: 6e6, radius of 250m and a starting velocity of 36.5m/s
 
     Issues: the planets don't seem to like staying in a stable orbit. I've tried using the equation ... (I need to use delta time don't I???)
+    Fixed that issue, there's a max mass of 1e9
 */

@@ -18,6 +18,7 @@ public class Player : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        rb.maxLinearVelocity = 1000;
         moveAction = InputSystem.actions.FindAction("Move");
         rotateAction = InputSystem.actions.FindAction("Look");
         velocity = new Vector3(0, 0, 0);
@@ -35,7 +36,6 @@ public class Player : MonoBehaviour
     {
         // Move the player in accordance to their inputs
         Vector3 moveValue = rb.rotation * (moveAction.ReadValue<Vector3>() * moveSpeed * Time.fixedDeltaTime);
-        velocity += moveValue;
 
         // Change the camera angle in accordance to player input
         float turnHoriz = rotateAction.ReadValue<Vector2>().x * rotationSpeed * Time.fixedDeltaTime;
@@ -43,7 +43,7 @@ public class Player : MonoBehaviour
         Quaternion turnRotation = Quaternion.Euler(turnVert, turnHoriz, 0f);
 
 
-        rb.MovePosition(rb.position + velocity);
+        rb.AddForce(moveValue);
         rb.MoveRotation(rb.rotation * turnRotation);
     }
 
