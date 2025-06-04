@@ -642,7 +642,6 @@ MonoBehaviour:
   velocities:
   - {x: 0, y: 0, z: 0}
   - {x: 0, y: 0, z: 50}
-  GravitationalConstant: 0.00667
 --- !u!4 &1565470354
 Transform:
   m_ObjectHideFlags: 0

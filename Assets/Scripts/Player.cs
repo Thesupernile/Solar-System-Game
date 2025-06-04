@@ -54,6 +54,7 @@ public class Player : MonoBehaviour
 
 
         velocity += moveValue * rb.mass;
+        rb.MoveRotation(rb.rotation * turnRotation);
         rb.position += velocity;
 
         // If the player velocity exceeds maximum, set it to the maximum
@@ -62,18 +63,11 @@ public class Player : MonoBehaviour
             velocity = velocity * (maxSpeed / velocity.magnitude);
         }
 
-
         // Update the camera so that downwards is in the direction of the ground (of the closest celestial body assuming within 500m of it's surface)
         if (closestBodyDistance.magnitude < 500)
         {
             // Rotate the camera
-            transform.LookAt(transform, closestBodyDistance);
-            Debug.Log("Looking at new celestial body");
-            rb.MoveRotation(Quaternion.Euler(0, 0, 0));
-        }
-        else
-        {
-            rb.MoveRotation(rb.rotation * turnRotation);
+            rb.rotation = Quaternion.FromToRotation(transform.up, closestBodyDistance) * rb.rotation;
         }
     }
 

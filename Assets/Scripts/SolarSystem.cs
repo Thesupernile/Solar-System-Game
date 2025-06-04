@@ -11,7 +11,7 @@ public class SolarSystem : MonoBehaviour
     public List<Vector3> velocities = new List<Vector3>();
 
     // Gravity
-    public float GravitationalConstant = 6.67e-11f;
+    static public float GravitationalConstant = 6.67e-11f;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -59,6 +59,10 @@ public class SolarSystem : MonoBehaviour
                     if (secondaryCelestialBody.CompareTag("Player") && (closestBodyDistance != null || r.magnitude < closestBodyDistance.magnitude))
                     {
                         closestBodyDistance = r;
+                    }
+
+                    if (targetCelestialBody.CompareTag("Player")) {
+                        Debug.Log($"Player accelerated by: {velocities[i].x}, {velocities[i].y}, {velocities[i].z}");
                     }
                 }
             }
