@@ -6,6 +6,7 @@ public class Player : MonoBehaviour
     public float moveSpeed = 1f;
     public float rotationSpeed = 2f;
     public float resetSpeedPercent = 1f;
+    public float maxSpeed = 100f;
 
 
     private Vector3 velocity;
@@ -46,6 +47,20 @@ public class Player : MonoBehaviour
         velocity += moveValue * rb.mass;
         rb.position += velocity;
         rb.MoveRotation(rb.rotation * turnRotation);
+
+        // If the player velocity exceeds maximum, set it to the maximum
+        if (velocity.magnitude > maxSpeed)
+        {
+            velocity = velocity * (maxSpeed / velocity.magnitude);
+        }
+
+
+        // Update the camera so that downwards is in the direction of the ground (of the closest celestial body assuming within 500m of it's surface)
+        // Temp code
+        Vector3 closestBodyDistance = new Vector3(0, 0, 0);
+        if (closestBodyDistance.magnitude < 500) {
+            // Rotate the camera
+        }
     }
 
     private void OnTriggerEnter(Collider other)
