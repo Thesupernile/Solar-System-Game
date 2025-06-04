@@ -23,6 +23,7 @@ public class SolarSystem : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        Vector3 closestBodyDistance = new Vector3(10000, 10000, 10000);
         for (int i = 0; i < celestialBodies.Count; i++)
         {
             GameObject targetCelestialBody = celestialBodies[i];
@@ -53,11 +54,19 @@ public class SolarSystem : MonoBehaviour
                     Debug.Log($"Mass 1: {m1} Mass 2: {m2}");
                     Debug.Log($"Force: {force.x}, {force.y}, {force.z} \n");
                     Debug.Log($"Velocity: {velocities[i].x}, {velocities[i].y}, {velocities[i].z}");
+
+                    // If the other body is the player, we compare the distance
+                    if (secondaryCelestialBody.CompareTag("Player") && (closestBodyDistance != null || r.magnitude < closestBodyDistance.magnitude))
+                    {
+                        closestBodyDistance = r;
+                    }
                 }
             }
             // Move the target body by it's curret velocity
             targetCelestialBody.GetComponent<Rigidbody>().MovePosition(targetCelestialBody.GetComponent<Rigidbody>().position + velocities[i] * Time.fixedDeltaTime);
         }
+
+        Player.closestBodyDistance = closestBodyDistance;
     }
 }
 

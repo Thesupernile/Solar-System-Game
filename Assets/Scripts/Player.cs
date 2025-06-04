@@ -7,6 +7,7 @@ public class Player : MonoBehaviour
     public float rotationSpeed = 2f;
     public float resetSpeedPercent = 1f;
     public float maxSpeed = 100f;
+    static public Vector3 closestBodyDistance;
 
 
     private Vector3 velocity;
@@ -29,7 +30,7 @@ public class Player : MonoBehaviour
     {
         if (InputSystem.actions.FindAction("ResetVelocity").IsPressed())
         {
-            rb.AddForce(-rb.linearVelocity * (resetSpeedPercent / 100));
+            velocity -= velocity * (resetSpeedPercent / 100);
         }
     }
 
@@ -56,10 +57,10 @@ public class Player : MonoBehaviour
 
 
         // Update the camera so that downwards is in the direction of the ground (of the closest celestial body assuming within 500m of it's surface)
-        // Temp code
-        Vector3 closestBodyDistance = new Vector3(0, 0, 0);
-        if (closestBodyDistance.magnitude < 500) {
+        if (closestBodyDistance.magnitude < 500)
+        {
             // Rotate the camera
+            transform.LookAt(transform, closestBodyDistance);
         }
     }
 
