@@ -53,17 +53,10 @@ public class Player : MonoBehaviour
         Quaternion turnRotation = Quaternion.Euler(turnVert, turnHoriz, 0f);
 
 
-        velocity += moveValue * rb.mass;
+        rb.AddForce(moveValue, ForceMode.VelocityChange);
         rb.MoveRotation(rb.rotation * turnRotation);
-        rb.position += velocity;
 
-        // If the player velocity exceeds maximum, set it to the maximum
-        if (velocity.magnitude > maxSpeed)
-        {
-            velocity = velocity * (maxSpeed / velocity.magnitude);
-        }
-
-        // Update the camera so that downwards is in the direction of the ground (of the closest celestial body assuming within 500m of it's surface)
+        // Update the camera so that downwards is in the direction of the ground (of the closest celestial body assuming within 500m of it's centre)
         if (closestBodyDistance.magnitude < 500)
         {
             // Rotate the camera

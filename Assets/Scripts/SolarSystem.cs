@@ -16,8 +16,12 @@ public class SolarSystem : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        velocities.Add(new Vector3(0, 0, 0));
-        velocities.Add(new Vector3(0, 0, 50));
+        // Apply a force to accelerate the celestial bodies up to speed
+        for (int i = 0; i < celestialBodies.Count; i++)
+        {
+            Rigidbody rb = celestialBodies[i].GetComponent<Rigidbody>();
+            rb.AddForce(velocities[i] * rb.mass, ForceMode.VelocityChange);
+        }
     }
 
     // Update is called once per frame
@@ -44,15 +48,8 @@ public class SolarSystem : MonoBehaviour
                     // Uses the unit vector of the distance to calculate the force vector
                     Vector3 force = r.normalized * forceMagnitude;
 
-                    // Changes the first celestial body's velocity accordingly F=ma => F/m = a
-                    velocities[i] += (force / m1) * Time.fixedDeltaTime;
-
-                    // Output a ton of debug stuff
-                    /*Debug.Log($"Force mag. : {forceMagnitude}");
-                    Debug.Log($"Centres distance: {distance}");
-                    Debug.Log($"Mass 1: {m1} Mass 2: {m2}");
-                    Debug.Log($"Force: {force.x}, {force.y}, {force.z} \n");
-                    Debug.Log($"Velocity: {velocities[i].x}, {velocities[i].y}, {velocities[i].z}");*/
+                    // Add the force experienced to the target rigid body
+                    targetCelestialBody.GetComponent<Rigidbody>().AddForce(force * Time.fixedDeltaTime, ForceMode.VelocityChange);
 
                     // If the other body is the player, we compare the distance
                     if (secondaryCelestialBody.CompareTag("Player") && (closestBodyDistance != null || r.magnitude < closestBodyDistance.magnitude))
@@ -60,13 +57,19 @@ public class SolarSystem : MonoBehaviour
                         closestBodyDistance = r;
                     }
 
-                    if (targetCelestialBody.CompareTag("Player")) {
-                        Debug.Log($"Player accelerated by: {velocities[i].x}, {velocities[i].y}, {velocities[i].z}");
+                    // Debug
+                    if (targetCelestialBody.CompareTag("Player"))
+                    {
+                        Debug.Log($"Player accelerated by: {force.x}, {force.y}, {force.z}");
                     }
+
+                    /*Debug.Log($"Force mag. : {forceMagnitude}");
+                    Debug.Log($"Centres distance: {distance}");
+                    Debug.Log($"Mass 1: {m1} Mass 2: {m2}");
+                    Debug.Log($"Force: {force.x}, {force.y}, {force.z} \n");
+                    Debug.Log($"Velocity: {velocities[i].x}, {velocities[i].y}, {velocities[i].z}");*/
                 }
             }
-            // Move the target body by it's curret velocity
-            targetCelestialBody.GetComponent<Rigidbody>().MovePosition(targetCelestialBody.GetComponent<Rigidbody>().position + velocities[i] * Time.fixedDeltaTime);
         }
 
         Player.closestBodyDistance = closestBodyDistance;
