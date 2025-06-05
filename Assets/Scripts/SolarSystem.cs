@@ -11,7 +11,7 @@ public class SolarSystem : MonoBehaviour
     public List<Vector3> velocities = new List<Vector3>();
 
     // Gravity
-    static public float GravitationalConstant = 6.67e-11f;
+    public float GravitationalConstant = 6.67e-11f;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -20,7 +20,7 @@ public class SolarSystem : MonoBehaviour
         for (int i = 0; i < celestialBodies.Count; i++)
         {
             Rigidbody rb = celestialBodies[i].GetComponent<Rigidbody>();
-            rb.AddForce(velocities[i] * rb.mass, ForceMode.VelocityChange);
+            rb.linearVelocity = velocities[i];
         }
     }
 
