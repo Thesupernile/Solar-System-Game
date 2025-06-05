@@ -7,7 +7,6 @@ public class Player : MonoBehaviour
     public float rotationSpeed = 2f;
     public float resetSpeedPercent = 1f;
     public float maxSpeed = 100f;
-    static public bool isLanded = false;
     static public Vector3 closestBodyDistance;
 
 
@@ -24,7 +23,7 @@ public class Player : MonoBehaviour
         rb.maxLinearVelocity = 1000;
         moveAction = InputSystem.actions.FindAction("Move");
         rotateAction = InputSystem.actions.FindAction("Look");
-        velocity = new Vector3(0, 0, 0);
+        velocity = new Vector3(0, 0, 41);
     }
 
     void Update()
@@ -66,13 +65,13 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (velocity.sqrMagnitude <= 160000 && other.GetComponent<Rigidbody>() != null)
+        if (velocity.sqrMagnitude <= 160000 && other.gameObject.GetComponent<Rigidbody>() != null)
         {
-            //isLanded = true;
+            rb.linearVelocity = other.gameObject.GetComponent<Rigidbody>().linearVelocity;
         }
     }
     private void OnTriggerExit(Collider other)
     {
-        isLanded = false;
+
     }
 }

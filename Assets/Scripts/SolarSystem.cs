@@ -34,7 +34,7 @@ public class SolarSystem : MonoBehaviour
             // Using the universal law of gravitation, attract each of the celestial bodies to each of the other bodies
             foreach (GameObject secondaryCelestialBody in celestialBodies)
             {
-                if (secondaryCelestialBody != targetCelestialBody && !secondaryCelestialBody.CompareTag("Player"))
+                if (secondaryCelestialBody != targetCelestialBody)
                 {
                     // Finds the magnitude of the gravitational force
                     Vector3 r = secondaryCelestialBody.transform.position - targetCelestialBody.transform.position;
@@ -43,13 +43,13 @@ public class SolarSystem : MonoBehaviour
                     float m1 = targetCelestialBody.GetComponent<Rigidbody>().mass;
                     float m2 = secondaryCelestialBody.GetComponent<Rigidbody>().mass;
 
-                    float forceMagnitude = GravitationalConstant * (m1 * m2) / distanceSquared;
+                    float forceMagnitude = GravitationalConstant * (m1 * m2 / distanceSquared);
 
                     // Uses the unit vector of the distance to calculate the force vector
                     Vector3 force = r.normalized * forceMagnitude;
 
                     // Add the force experienced to the target rigid body
-                    targetCelestialBody.GetComponent<Rigidbody>().AddForce(force * Time.fixedDeltaTime, ForceMode.Impulse);
+                    targetCelestialBody.GetComponent<Rigidbody>().AddForce(force, ForceMode.Force);
 
                     // If the other body is the player, we compare the distance
                     if (targetCelestialBody.CompareTag("Player") && (closestBodyDistance != null || r.magnitude < closestBodyDistance.magnitude))
@@ -65,7 +65,6 @@ public class SolarSystem : MonoBehaviour
                     Debug.Log($"Mass 1: {m1} Mass 2: {m2}");
                     Debug.Log($"Force: {force.x}, {force.y}, {force.z} \n");
                     Debug.Log($"Velocity: {velocities[i].x}, {velocities[i].y}, {velocities[i].z}");
-                    
                     */
                 }
             }
