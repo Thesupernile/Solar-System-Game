@@ -34,7 +34,7 @@ public class SolarSystem : MonoBehaviour
             // Using the universal law of gravitation, attract each of the celestial bodies to each of the other bodies
             foreach (GameObject secondaryCelestialBody in celestialBodies)
             {
-                if (secondaryCelestialBody != targetCelestialBody && !(targetCelestialBody.CompareTag("Player") && Player.isLanded))
+                if (secondaryCelestialBody != targetCelestialBody && !secondaryCelestialBody.CompareTag("Player"))
                 {
                     // Finds the magnitude of the gravitational force
                     Vector3 r = secondaryCelestialBody.transform.position - targetCelestialBody.transform.position;
@@ -49,25 +49,24 @@ public class SolarSystem : MonoBehaviour
                     Vector3 force = r.normalized * forceMagnitude;
 
                     // Add the force experienced to the target rigid body
-                    targetCelestialBody.GetComponent<Rigidbody>().AddForce(force * Time.fixedDeltaTime, ForceMode.VelocityChange);
+                    targetCelestialBody.GetComponent<Rigidbody>().AddForce(force * Time.fixedDeltaTime, ForceMode.Impulse);
 
                     // If the other body is the player, we compare the distance
-                    if (secondaryCelestialBody.CompareTag("Player") && (closestBodyDistance != null || r.magnitude < closestBodyDistance.magnitude))
+                    if (targetCelestialBody.CompareTag("Player") && (closestBodyDistance != null || r.magnitude < closestBodyDistance.magnitude))
                     {
                         closestBodyDistance = r;
+                        Debug.Log($"Player accelerated by: {force.x}, {force.y}, {force.z}");
                     }
 
                     // Debug
-                    if (targetCelestialBody.CompareTag("Player"))
-                    {
-                        Debug.Log($"Player accelerated by: {force.x}, {force.y}, {force.z}");
-                    }
 
                     /*Debug.Log($"Force mag. : {forceMagnitude}");
                     Debug.Log($"Centres distance: {distance}");
                     Debug.Log($"Mass 1: {m1} Mass 2: {m2}");
                     Debug.Log($"Force: {force.x}, {force.y}, {force.z} \n");
-                    Debug.Log($"Velocity: {velocities[i].x}, {velocities[i].y}, {velocities[i].z}");*/
+                    Debug.Log($"Velocity: {velocities[i].x}, {velocities[i].y}, {velocities[i].z}");
+                    
+                    */
                 }
             }
         }

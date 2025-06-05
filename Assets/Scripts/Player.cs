@@ -7,7 +7,7 @@ public class Player : MonoBehaviour
     public float rotationSpeed = 2f;
     public float resetSpeedPercent = 1f;
     public float maxSpeed = 100f;
-    static public bool isLanded = true;
+    static public bool isLanded = false;
     static public Vector3 closestBodyDistance;
 
 
@@ -60,7 +60,7 @@ public class Player : MonoBehaviour
         if (closestBodyDistance.magnitude < 500)
         {
             // Rotate the camera
-            rb.rotation = Quaternion.FromToRotation(transform.up, closestBodyDistance) * rb.rotation;
+            rb.rotation = Quaternion.FromToRotation(-transform.up, closestBodyDistance) * rb.rotation;
         }
     }
 
@@ -68,7 +68,7 @@ public class Player : MonoBehaviour
     {
         if (velocity.sqrMagnitude <= 160000 && other.GetComponent<Rigidbody>() != null)
         {
-            isLanded = true;
+            //isLanded = true;
         }
     }
     private void OnTriggerExit(Collider other)
