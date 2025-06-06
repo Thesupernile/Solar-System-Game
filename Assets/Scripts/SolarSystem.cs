@@ -55,7 +55,6 @@ public class SolarSystem : MonoBehaviour
                     if (targetCelestialBody.CompareTag("Player") && (closestBodyDistance != null || r.magnitude < closestBodyDistance.magnitude))
                     {
                         closestBodyDistance = r;
-                        Debug.Log($"Player accelerated by: {force.x}, {force.y}, {force.z}");
                     }
 
                     // Debug
