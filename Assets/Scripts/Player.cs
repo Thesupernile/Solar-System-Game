@@ -7,6 +7,7 @@ public class Player : MonoBehaviour
     public float rotationSpeed = 2f;
     public float resetSpeedPercent = 1f;
     public float maxSpeed = 100f;
+    public bool subOrbitalCamera = false;
     static public Vector3 closestBodyDistance;
 
 
@@ -49,7 +50,18 @@ public class Player : MonoBehaviour
         // Change the camera angle in accordance to player input
         float turnHoriz = rotateAction.ReadValue<Vector2>().x * rotationSpeed * Time.fixedDeltaTime;
         float turnVert = rotateAction.ReadValue<Vector2>().y * rotationSpeed * Time.fixedDeltaTime;
-        Quaternion turnRotation = Quaternion.Euler(turnVert, turnHoriz, 0f);
+        Quaternion turnRotation;
+        Quaternion cameraTurnRotation;
+        if (!subOrbitalCamera)
+        {
+            turnRotation = Quaternion.Euler(turnVert, turnHoriz, 0f);
+        }
+        else
+        {
+            turnRotation = Quaternion.Euler(0f, turnHoriz, 0f);
+            cameraTurnRotation = Quaternion.Euler(turnVert, 0f, 0f);
+            GetComponent<Camera>().transform.rotation = GetComponent<Camera>().transform.rotation * cameraTurnRotation;
+        }
 
 
         rb.AddForce(moveValue, ForceMode.VelocityChange);
@@ -60,6 +72,11 @@ public class Player : MonoBehaviour
         {
             // Rotate the camera
             rb.rotation = Quaternion.FromToRotation(-transform.up, closestBodyDistance) * rb.rotation;
+            subOrbitalCamera = true;
+        }
+        else
+        {
+            subOrbitalCamera = false;
         }
     }
 
@@ -75,3 +92,5 @@ public class Player : MonoBehaviour
 
     }
 }
+
+// Next step: whene camera locks to planet, change camera mode to make it easier to see thngs
