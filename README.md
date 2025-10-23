@@ -22,3 +22,17 @@ This is a simple solar system game where you can fly and explore a virtual solar
 * Adding ability to leave spaceship to explore the planet more easily
 * Adding space stations where you can refuel and fix your spaceship (and thus adding fuel and health bars)
 * Adding navigation aids to help you fly to the games planets more easily
+
+# Screenshots
+
+Flying around the solar system
+
+![Flying around the system](Screenshots/Flight.png)
+
+More flying around the solar system
+
+![Flying around the system 2](Screenshots/FlightOuter.png)
+
+Landed on a planet
+
+![Landing on a planet](Screenshots/Landing.png)
