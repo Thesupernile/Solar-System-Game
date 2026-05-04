@@ -663,7 +663,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4506695131265487993, guid: 9a232d8ca43075d4f87bff208105b093, type: 3}
       propertyPath: m_Mass
-      value: 75000
+      value: 750000
       objectReference: {fileID: 0}
     - target: {fileID: 4506695131265487993, guid: 9a232d8ca43075d4f87bff208105b093, type: 3}
       propertyPath: m_UseGravity
@@ -774,31 +774,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3242712393831501857, guid: 9a232d8ca43075d4f87bff208105b093, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.99995136
       objectReference: {fileID: 0}
     - target: {fileID: 3242712393831501857, guid: 9a232d8ca43075d4f87bff208105b093, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0.008094828
       objectReference: {fileID: 0}
     - target: {fileID: 3242712393831501857, guid: 9a232d8ca43075d4f87bff208105b093, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0.0048652682
       objectReference: {fileID: 0}
     - target: {fileID: 3242712393831501857, guid: 9a232d8ca43075d4f87bff208105b093, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: -0.0028627363
       objectReference: {fileID: 0}
     - target: {fileID: 3242712393831501857, guid: 9a232d8ca43075d4f87bff208105b093, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
+      value: 0.929
       objectReference: {fileID: 0}
     - target: {fileID: 3242712393831501857, guid: 9a232d8ca43075d4f87bff208105b093, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: 0.555
       objectReference: {fileID: 0}
     - target: {fileID: 3242712393831501857, guid: 9a232d8ca43075d4f87bff208105b093, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
+      value: -0.324
       objectReference: {fileID: 0}
     - target: {fileID: 4506695131265487993, guid: 9a232d8ca43075d4f87bff208105b093, type: 3}
       propertyPath: m_Drag
@@ -806,7 +806,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4506695131265487993, guid: 9a232d8ca43075d4f87bff208105b093, type: 3}
       propertyPath: m_Mass
-      value: 75000
+      value: 750000
       objectReference: {fileID: 0}
     - target: {fileID: 4506695131265487993, guid: 9a232d8ca43075d4f87bff208105b093, type: 3}
       propertyPath: m_UseGravity
@@ -907,12 +907,12 @@ MonoBehaviour:
   - {fileID: 74553311}
   velocities:
   - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 41}
-  - {x: 0, y: 0, z: 73}
-  - {x: 0, y: 0, z: 41}
-  - {x: 0, y: 0, z: 26}
+  - {x: 0, y: 0, z: 12.913172}
+  - {x: 0, y: 0, z: -12.91317}
+  - {x: 0, y: 0, z: 12.913172}
+  - {x: 0, y: 0, z: 8.1670065}
   - {x: 0, y: 0, z: 0}
-  GravitationalConstant: 6.67
+  GravitationalConstant: 0.000667
 --- !u!4 &1565470354
 Transform:
   m_ObjectHideFlags: 0
@@ -1023,7 +1023,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4506695131265487993, guid: 9a232d8ca43075d4f87bff208105b093, type: 3}
       propertyPath: m_Mass
-      value: 75000
+      value: 750000
       objectReference: {fileID: 0}
     - target: {fileID: 4506695131265487993, guid: 9a232d8ca43075d4f87bff208105b093, type: 3}
       propertyPath: m_UseGravity
@@ -1178,7 +1178,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4506695131265487993, guid: 9a232d8ca43075d4f87bff208105b093, type: 3}
       propertyPath: m_Mass
-      value: 100000
+      value: 1e+9
       objectReference: {fileID: 0}
     - target: {fileID: 4506695131265487993, guid: 9a232d8ca43075d4f87bff208105b093, type: 3}
       propertyPath: m_UseGravity
